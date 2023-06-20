@@ -13,4 +13,8 @@ migrateup:
 migratedown:
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/hamed_bank?sslmode=disable" -verbose down
 
-.PHONY: postgres createdb dropdb migratedown migrateup
+sqlc:
+	sqlc generate
+
+
+.PHONY: postgres createdb dropdb migratedown migrateup sqlc
