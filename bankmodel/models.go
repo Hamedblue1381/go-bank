@@ -2,7 +2,7 @@
 // versions:
 //   sqlc v1.18.0
 
-package bankmodel
+package db
 
 import (
 	"time"

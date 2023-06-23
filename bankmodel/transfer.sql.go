@@ -3,7 +3,7 @@
 //   sqlc v1.18.0
 // source: transfer.sql
 
-package bankmodel
+package db
 
 import (
 	"context"

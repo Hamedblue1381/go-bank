@@ -5,5 +5,5 @@ sql:
     schema: "./db/migration/"
     gen:
       go:
-        package: "bankmodel"
+        package: "db"
         out: "bankmodel"
