@@ -3,7 +3,6 @@ package db
 import (
 	"context"
 	"database/sql"
-	"fmt"
 	"testing"
 	"time"
 
@@ -84,7 +83,6 @@ func TestListAccount(t *testing.T) {
 		Limit:  5,
 		Offset: 5,
 	}
-	fmt.Println(arg)
 
 	accounts, err := testQueries.ListAccount(context.Background(), arg)
 	require.NoError(t, err)

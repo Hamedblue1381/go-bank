@@ -2,7 +2,6 @@ package db
 
 import (
 	"context"
-	"fmt"
 	"testing"
 	"time"
 
@@ -64,7 +63,6 @@ func TestListTransfers(t *testing.T) {
 		Limit:         5,
 		Offset:        5,
 	}
-	fmt.Println(arg)
 	transfers, err := testQueries.ListTransfers(context.Background(), arg)
 	require.NoError(t, err)
 	require.Len(t, transfers, 5)

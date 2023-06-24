@@ -2,7 +2,6 @@ package db
 
 import (
 	"context"
-	"fmt"
 	"testing"
 	"time"
 
@@ -54,7 +53,6 @@ func TestListEntries(t *testing.T) {
 		Limit:     5,
 		Offset:    5,
 	}
-	fmt.Println(arg)
 	entries, err := testQueries.ListEntries(context.Background(), arg)
 	require.NoError(t, err)
 	require.Len(t, entries, 5)
