@@ -23,6 +23,6 @@ server:
 	go run main.go
 
 mock:
-	ockgen -package mockdb -destination db/mock/store.go github.com/HamedBlue1381/go-postgres-gRPC/db/bankmodel Store
-	
+	mockgen -package mockdb -destination db/mock/store.go github.com/HamedBlue1381/go-postgres-gRPC/db/bankmodel Store
+
 .PHONY: postgres createdb dropdb migratedown migrateup sqlc server mock
