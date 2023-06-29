@@ -1,9 +1,8 @@
-version: "2"
-sql:
-  - engine: "postgresql"
+version: "1"
+packages:
+  - name: "db"
+    path: './db/bankmodel'
     queries: "./db/query/"
     schema: "./db/migration/"
-    gen:
-      go:
-        package: "db"
-        out: "./db/bankmodel"
+    emit_interface: true
+    emit_empty_slices: true
