@@ -14,8 +14,8 @@ import (
 	"github.com/HamedBlue1381/go-postgres-gRPC/token"
 	"github.com/HamedBlue1381/go-postgres-gRPC/util"
 	"github.com/gin-gonic/gin"
-	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
+	"go.uber.org/mock/gomock"
 )
 
 func TestTransferAPI(t *testing.T) {
