@@ -9,7 +9,7 @@ import (
 	reflect "reflect"
 
 	db "github.com/HamedBlue1381/go-postgres-gRPC/db/bankmodel"
-	gomock "github.com/golang/mock/gomock"
+	gomock "go.uber.org/mock/gomock"
 )
 
 // MockStore is a mock of Store interface.
@@ -111,7 +111,7 @@ func (mr *MockStoreMockRecorder) CreateUser(arg0, arg1 interface{}) *gomock.Call
 }
 
 // DeleteAccount mocks base method.
-func (m *MockStore) DeleteAccount(arg0 context.Context, arg1 db.DeleteAccountParams) error {
+func (m *MockStore) DeleteAccount(arg0 context.Context, arg1 int64) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "DeleteAccount", arg0, arg1)
 	ret0, _ := ret[0].(error)

@@ -26,8 +26,8 @@ OFFSET $3 ;
 
 -- name: UpdateAccount :one
 UPDATE accounts
-SET balance = $3
-WHERE id = $1 AND owner = $2
+SET balance = $2
+WHERE id = $1
 RETURNING *;
 
 -- name: AddAccountBalance :one
@@ -37,4 +37,4 @@ WHERE id = sqlc.arg(id)
 RETURNING *;
 
 -- name: DeleteAccount :exec
-DELETE FROM accounts WHERE id = $1 AND owner = $2;
+DELETE FROM accounts WHERE id = $1;
