@@ -79,13 +79,27 @@ func (server *Server) deleteAccount(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
 	}
+
+	// Authentication middleware
 	authPayload := ctx.MustGet(authorizationPayloadKey).(*token.Payload)
 
-	arg := db.DeleteAccountParams{
-		Owner: authPayload.Username,
-		ID:    req.ID,
+	// Use the checkAccountOwnership function
+	isAllowed, err := server.checkAccountOwnership(ctx, req.ID, authPayload)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			ctx.JSON(http.StatusNotFound, errorResponse(err))
+			return
+		}
+		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
+		return
 	}
-	err := server.store.DeleteAccount(ctx, arg)
+	if !isAllowed {
+		ctx.JSON(http.StatusForbidden, gin.H{"error": "You are not allowed to delete this account."})
+		return
+	}
+
+	//Delete Account
+	err = server.store.DeleteAccount(ctx, req.ID)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			ctx.JSON(http.StatusNotFound, errorResponse(err))
@@ -109,13 +123,30 @@ func (server *Server) updateAccount(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
 	}
+
+	// Authentication middleware
 	authPayload := ctx.MustGet(authorizationPayloadKey).(*token.Payload)
 
+	// Use the checkAccountOwnership function
+	isAllowed, err := server.checkAccountOwnership(ctx, req.ID, authPayload)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			ctx.JSON(http.StatusNotFound, errorResponse(err))
+			return
+		}
+		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
+		return
+	}
+	if !isAllowed {
+		ctx.JSON(http.StatusForbidden, gin.H{"error": "You are not allowed to update this account."})
+		return
+	}
+
 	arg := db.UpdateAccountParams{
-		Owner:   authPayload.Username,
 		ID:      req.ID,
 		Balance: req.Balance,
 	}
+
 	account, err := server.store.UpdateAccount(ctx, arg)
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -153,4 +184,20 @@ func (server *Server) listAccount(ctx *gin.Context) {
 		return
 	}
 	ctx.JSON(http.StatusOK, account)
+}
+
+func (server *Server) checkAccountOwnership(ctx *gin.Context, reqID int64, authPayload *token.Payload) (bool, error) {
+	account, err := server.store.GetAccount(ctx, reqID)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return false, err
+		}
+		return false, err
+	}
+
+	if authPayload.Username != account.Owner {
+		return false, nil
+	}
+
+	return true, nil
 }
