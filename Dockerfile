@@ -1,9 +1,6 @@
 # Build Stage
 FROM golang:1.20.5-alpine3.18 AS builder
 
-ENV GOPROXY=https://proxy.golang.org,direct
-ENV GONOPROXY=example.com/private
-
 WORKDIR /app
 COPY . .
 RUN go build -o main main.go
