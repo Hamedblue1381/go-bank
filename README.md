@@ -1,4 +1,4 @@
-# go-postgres-gRPC
+# hamed-bank
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Hamedblue1381/hamed-bank)](https://goreportcard.com/report/github.com/Hamedblue1381/hamed-bank)
