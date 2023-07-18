@@ -1,9 +1,9 @@
 # go-postgres-gRPC
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Go Report Card](https://goreportcard.com/badge/github.com/Hamedblue1381/go-postgres-gRPC)](https://goreportcard.com/report/github.com/Hamedblue1381/go-postgres-gRPC)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Hamedblue1381/hamed-bank)](https://goreportcard.com/report/github.com/Hamedblue1381/hamed-bank)
 
-`go-postgres-gRPC` is a simple and efficient repository that demonstrates the implementation of gRPC in Golang with a PostgreSQL database. This project is designed with a clean and modular architecture, making it a great starting point for developers to build their own gRPC-based applications using Go and PostgreSQL.
+`Hamed-bank` is a simple and efficient repository that demonstrates the implementation of gRPC in Golang with a PostgreSQL database. This project is designed with a clean and modular architecture, making it a great starting point for developers to build their own gRPC-based applications using Go and PostgreSQL.
 
 ## Table of Contents
 
