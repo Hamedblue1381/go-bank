@@ -13,7 +13,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - DB_SOURCE=postgresql://root:secret@localhost:5432/hamed_bank?sslmode=disable
+      - DB_SOURCE=postgresql://root:secret@postgres:5432/hamed_bank?sslmode=disable
     depends_on:
       - postgres
     entrypoint:
