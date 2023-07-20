@@ -5,8 +5,8 @@ import (
 	"errors"
 	"net/http"
 
-	db "github.com/HamedBlue1381/go-postgres-gRPC/db/bankmodel"
-	"github.com/HamedBlue1381/go-postgres-gRPC/token"
+	db "github.com/HamedBlue1381/hamed-bank/db/bankmodel"
+	"github.com/HamedBlue1381/hamed-bank/token"
 	"github.com/gin-gonic/gin"
 	"github.com/lib/pq"
 )

@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/HamedBlue1381/go-postgres-gRPC/util"
+	"github.com/HamedBlue1381/hamed-bank/util"
 	"github.com/stretchr/testify/require"
 )
 

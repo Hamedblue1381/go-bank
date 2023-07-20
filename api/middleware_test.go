@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/HamedBlue1381/go-postgres-gRPC/token"
+	"github.com/HamedBlue1381/hamed-bank/token"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/require"
 )

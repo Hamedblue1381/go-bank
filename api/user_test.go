@@ -12,9 +12,9 @@ import (
 	"testing"
 	"time"
 
-	db "github.com/HamedBlue1381/go-postgres-gRPC/db/bankmodel"
-	mockdb "github.com/HamedBlue1381/go-postgres-gRPC/db/mock"
-	"github.com/HamedBlue1381/go-postgres-gRPC/util"
+	db "github.com/HamedBlue1381/hamed-bank/db/bankmodel"
+	mockdb "github.com/HamedBlue1381/hamed-bank/db/mock"
+	"github.com/HamedBlue1381/hamed-bank/util"
 	"github.com/gin-gonic/gin"
 	"github.com/lib/pq"
 	"github.com/stretchr/testify/require"

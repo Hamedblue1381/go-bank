@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/HamedBlue1381/go-postgres-gRPC/util"
+	"github.com/HamedBlue1381/hamed-bank/util"
 	_ "github.com/lib/pq"
 )
 

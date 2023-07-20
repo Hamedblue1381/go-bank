@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com/HamedBlue1381/go-postgres-gRPC/util"
+	"github.com/HamedBlue1381/hamed-bank/util"
 	"github.com/go-playground/validator/v10"
 )
 
