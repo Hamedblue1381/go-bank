@@ -4,9 +4,9 @@ import (
 	"database/sql"
 	"log"
 
-	"github.com/HamedBlue1381/go-postgres-gRPC/api"
-	db "github.com/HamedBlue1381/go-postgres-gRPC/db/bankmodel"
-	"github.com/HamedBlue1381/go-postgres-gRPC/util"
+	"github.com/HamedBlue1381/hamed-bank/api"
+	db "github.com/HamedBlue1381/hamed-bank/db/bankmodel"
+	"github.com/HamedBlue1381/hamed-bank/util"
 	_ "github.com/lib/pq"
 )
 

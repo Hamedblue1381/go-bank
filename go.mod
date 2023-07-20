@@ -1,4 +1,4 @@
-module github.com/HamedBlue1381/go-postgres-gRPC
+module github.com/HamedBlue1381/hamed-bank
 
 go 1.20
 

@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	db "github.com/HamedBlue1381/go-postgres-gRPC/db/bankmodel"
-	"github.com/HamedBlue1381/go-postgres-gRPC/util"
+	db "github.com/HamedBlue1381/hamed-bank/db/bankmodel"
+	"github.com/HamedBlue1381/hamed-bank/util"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/lib/pq"
