@@ -5,10 +5,23 @@ package pb;
 import "google/api/annotations.proto";
 import "rpc_create_user.proto";
 import "rpc_login_user.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
  
 option go_package="github.com/HamedBlue1381/hamed-bank/pb";
 
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Hamed Bank API";
+    version: "1.0";
+    contact: {
+      name: "Hamed Bank Project";
+      url: "https://github.com/HamedBlue1381";
+      email: "hamedMLK.Mohammadi@gmail.com";
+    };
+  };
+};
 service HamedBank {
     rpc CreateUser (CreateUserRequest) returns (CreateUserResponse){
         option (google.api.http) = {
