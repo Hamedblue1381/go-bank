@@ -9,6 +9,7 @@ import (
 
 	"github.com/HamedBlue1381/hamed-bank/api"
 	db "github.com/HamedBlue1381/hamed-bank/db/bankmodel"
+	"github.com/HamedBlue1381/hamed-bank/doc"
 	"github.com/HamedBlue1381/hamed-bank/gapi"
 	"github.com/HamedBlue1381/hamed-bank/pb"
 	"github.com/HamedBlue1381/hamed-bank/util"
@@ -82,8 +83,8 @@ func runGatewayServer(config util.Config, store db.Store) {
 	mux := http.NewServeMux()
 	mux.Handle("/", grpcMux)
 
-	fs := http.FileServer(http.Dir("./doc/swagger"))
-	mux.Handle("/swagger/", http.StripPrefix("/swagger/", fs))
+	swaggerHandler := http.FileServer(http.FS(doc.SwaggerFiles))
+	mux.Handle("/swagger/", swaggerHandler)
 
 	listener, err := net.Listen("tcp", config.HTTPServerAddress)
 	if err != nil {
