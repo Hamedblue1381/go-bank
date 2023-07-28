@@ -14,7 +14,7 @@ option go_package="github.com/HamedBlue1381/hamed-bank/pb";
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
     title: "Hamed Bank API";
-    version: "1.0";
+    version: "1.1";
     contact: {
       name: "Hamed Bank Project";
       url: "https://github.com/HamedBlue1381";
@@ -28,12 +28,20 @@ service HamedBank {
             post: "/v1/create_user"
             body: "*"
         };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          description: "Use this API to create new user";
+          summary: "Create new user";
+        }; 
     }
  
     rpc LoginUser (LoginUserRequest) returns (LoginUserResponse){
         option (google.api.http) = {
             post: "/v1/login_user"
             body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          description: "Use this API to login user and get access & refresh token";
+          summary: "Login user";
         };
     }
 
