@@ -64,3 +64,55 @@ func (q *Queries) GetUser(ctx context.Context, username string) (User, error) {
 	)
 	return i, err
 }
+
+const updateUser = `-- name: UpdateUser :one
+UPDATE users
+SET
+ hashed_password= CASE
+  WHEN $1::boolean = TRUE THEN $2
+  ELSE hashed_password
+ END,
+ full_name=CASE
+  WHEN $3::boolean = TRUE THEN $4
+  ELSE full_name
+ END,
+ email=CASE
+  WHEN $5::boolean = TRUE THEN $6
+  ELSE email
+ END
+WHERE
+ username = $7
+RETURNING username, hashed_password, full_name, email, password_changed_at, created_at
+`
+
+type UpdateUserParams struct {
+	SetHashedPassword bool
+	HashedPassword    string
+	SetFullName       bool
+	FullName          string
+	SetEmail          bool
+	Email             string
+	Username          string
+}
+
+func (q *Queries) UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error) {
+	row := q.db.QueryRowContext(ctx, updateUser,
+		arg.SetHashedPassword,
+		arg.HashedPassword,
+		arg.SetFullName,
+		arg.FullName,
+		arg.SetEmail,
+		arg.Email,
+		arg.Username,
+	)
+	var i User
+	err := row.Scan(
+		&i.Username,
+		&i.HashedPassword,
+		&i.FullName,
+		&i.Email,
+		&i.PasswordChangedAt,
+		&i.CreatedAt,
+	)
+	return i, err
+}
