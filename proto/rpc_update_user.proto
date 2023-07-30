@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package pb;
+
+import "user.proto";
+
+option go_package="github.com/HamedBlue1381/hamed-bank/pb";
+
+message UpdateUserRequest {
+    string username=1;
+    optional string password=2;
+    optional string full_name=3;
+    optional string email=4;
+}
+
+message UpdateUserResponse {
+    User user=1;
+}
