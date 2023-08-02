@@ -16,14 +16,11 @@ func TestSendEmailWithGmail(t *testing.T) {
 	require.NoError(t, err)
 
 	sender := NewGmailSender(config.EmailSenderName, config.EmailSenderAddress, config.EmailSenderPassword)
-
-	subject := "A test email"
-	content := `
-	<h1>Hello Hamed</h1>
-	<p>This is a test message from <a href="https://github.com/HamedBlue1381">Hamed</a></p>
-	`
-	to := []string{"hamed.balanar@gmail.com"}
-	attachFiles := []string{"../README.md"}
+	//TODO: add generator and content's constant var
+	subject := "Cute Email :)"
+	content := MessageGenerator()
+	to := []string{ToEmailAddress}
+	attachFiles := []string{"../Email.txt"}
 
 	err = sender.SendEmail(subject, content, to, nil, nil, attachFiles)
 	require.NoError(t, err)

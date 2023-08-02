@@ -1,1 +1,3 @@
 *.log
+mailbox.go
+Email.txt
