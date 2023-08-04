@@ -1,14 +1,25 @@
 -- SQL dump generated using DBML (dbml-lang.org)
 -- Database: PostgreSQL
--- Generated at: 2023-07-19T12:56:09.445Z
+-- Generated at: 2023-08-04T19:02:52.123Z
 
 CREATE TABLE "users" (
   "username" varchar PRIMARY KEY,
   "hashed_password" varchar NOT NULL,
   "full_name" varchar NOT NULL,
   "email" varchar UNIQUE NOT NULL,
+  "is_email_verified" bool NOT NULL DEFAULT false,
   "password_changed_at" timestamp NOT NULL DEFAULT '0001-01-01 00:00:00Z',
-  "created_at" timestamp NOT NULL DEFAULT 'now()'
+  "created_at" timestamp NOT NULL DEFAULT (now())
+);
+
+CREATE TABLE "verify_emails" (
+  "id" bigserial,
+  "username" varchar NOT NULL,
+  "email" varchar NOT NULL,
+  "secret_code" varchar NOT NULL,
+  "is_user" bool NOT NULL DEFAULT false,
+  "created_at" timestamp NOT NULL DEFAULT (now()),
+  "expired_at" timestamp NOT NULL DEFAULT (now() + interval '15 minutes')
 );
 
 CREATE TABLE "accounts" (
@@ -16,14 +27,14 @@ CREATE TABLE "accounts" (
   "owner" varchar NOT NULL,
   "balance" bigint NOT NULL,
   "curreny" varchar NOT NULL,
-  "created_at" timestamp NOT NULL DEFAULT 'now()'
+  "created_at" timestamp NOT NULL DEFAULT (now())
 );
 
 CREATE TABLE "entries" (
   "id" bigserial PRIMARY KEY,
   "account_id" bigint NOT NULL,
   "amount" bigint NOT NULL,
-  "created_at" timestamp NOT NULL DEFAULT 'now()'
+  "created_at" timestamp NOT NULL DEFAULT (now())
 );
 
 CREATE TABLE "transfers" (
@@ -31,7 +42,7 @@ CREATE TABLE "transfers" (
   "from_account_id" bigint NOT NULL,
   "to_account_id" bigint NOT NULL,
   "amount" bigint NOT NULL,
-  "created_at" timestamp NOT NULL DEFAULT 'now()'
+  "created_at" timestamp NOT NULL DEFAULT (now())
 );
 
 CREATE TABLE "sessions" (
@@ -42,7 +53,7 @@ CREATE TABLE "sessions" (
   "client_ip" varchar NOT NULL,
   "is_blocked" boolean NOT NULL DEFAULT false,
   "expires_at" timestamp NOT NULL,
-  "created_at" timestamp NOT NULL DEFAULT 'now()'
+  "created_at" timestamp NOT NULL DEFAULT (now())
 );
 
 CREATE INDEX ON "accounts" ("owner");
@@ -60,6 +71,8 @@ CREATE INDEX ON "transfers" ("from_account_id", "to_account_id");
 COMMENT ON COLUMN "entries"."amount" IS 'can be negative or positive';
 
 COMMENT ON COLUMN "transfers"."amount" IS 'always positive';
+
+ALTER TABLE "verify_emails" ADD FOREIGN KEY ("username") REFERENCES "users" ("username");
 
 ALTER TABLE "accounts" ADD FOREIGN KEY ("owner") REFERENCES "users" ("username");
 
