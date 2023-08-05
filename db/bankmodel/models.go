@@ -53,4 +53,15 @@ type User struct {
 	Email             string
 	PasswordChangedAt time.Time
 	CreatedAt         time.Time
+	IsEmailVerified   bool
+}
+
+type VerifyEmail struct {
+	ID         int64
+	Username   string
+	Email      string
+	SecretCode string
+	IsUsed     bool
+	CreatedAt  time.Time
+	ExpiredAt  time.Time
 }
