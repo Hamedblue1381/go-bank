@@ -4,6 +4,7 @@ import (
 	"context"
 
 	db "github.com/HamedBlue1381/hamed-bank/db/bankmodel"
+	"github.com/HamedBlue1381/hamed-bank/mail"
 	"github.com/hibiken/asynq"
 	"github.com/redis/go-redis/v9"
 	"github.com/rs/zerolog/log"
@@ -22,9 +23,10 @@ type TaskProcessor interface {
 type RediTaskProcessor struct {
 	server *asynq.Server
 	store  db.Store
+	mailer mail.EmailSender
 }
 
-func NewRediTaskProcessor(redisOpt asynq.RedisClientOpt, store db.Store) TaskProcessor {
+func NewRediTaskProcessor(redisOpt asynq.RedisClientOpt, store db.Store, mailer mail.EmailSender) TaskProcessor {
 	logger := NewLogger()
 	redis.SetLogger(logger)
 	server := asynq.NewServer(
@@ -45,6 +47,7 @@ func NewRediTaskProcessor(redisOpt asynq.RedisClientOpt, store db.Store) TaskPro
 	return &RediTaskProcessor{
 		server: server,
 		store:  store,
+		mailer: mailer,
 	}
 }
 func (processor *RediTaskProcessor) Start() error {
