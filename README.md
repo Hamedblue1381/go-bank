@@ -33,8 +33,8 @@
 1. Clone the repository:
 
    ````bash
-   git clone https://github.com/Hamedblue1381/go-postgres-gRPC
-   cd go-postgres-gRPC
+   git clone https://github.com/Hamedblue1381/hamed-bank
+   cd hamed-bank
    ```
 
 2. Install the required Go dependencies:
