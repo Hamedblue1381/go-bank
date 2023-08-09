@@ -35,13 +35,13 @@
    ````bash
    git clone https://github.com/Hamedblue1381/hamed-bank
    cd hamed-bank
-   ```
+   
 
 2. Install the required Go dependencies:
 
    ````bash
    go mod download
-   ```
+   
 
 ## Quick Start
 
@@ -49,23 +49,23 @@
 
    ````bash
    make postgres
-   ```
+   
 2. Create the postgres database:
 
    ````bash
    make createdb
-   ```
+   
 3. Migrate up the database using go migration tool:
 
    ````bash
    make migrateup
-   ```
+   
 
 4. Run the gRPC server:
 
    ````bash
    make server
-   ```
+   
    
 
 ## License
